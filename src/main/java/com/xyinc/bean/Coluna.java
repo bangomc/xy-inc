@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 import com.xyinc.bean.enums.TipoDado;
 
@@ -25,8 +24,29 @@ public class Coluna implements Serializable {
 	private String nome;
 	
 	private TipoDado tipoDado;
-	
-	@ManyToOne
-	private Tabela tabela;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public TipoDado getTipoDado() {
+		return tipoDado;
+	}
+
+	public void setTipoDado(TipoDado tipoDado) {
+		this.tipoDado = tipoDado;
+	}
 
 }
