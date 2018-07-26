@@ -24,6 +24,14 @@ public class Coluna implements Serializable {
 	private String nome;
 	
 	private TipoDado tipoDado;
+	
+	public Coluna() {};
+		
+	public Coluna(String nome, TipoDado tipoDado) {
+		super();
+		this.nome = nome;
+		this.tipoDado = tipoDado;
+	}
 
 	public Long getId() {
 		return id;
