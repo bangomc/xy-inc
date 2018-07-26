@@ -6,4 +6,6 @@ import com.xyinc.bean.Tabela;
 
 public interface TabelaRepository extends JpaRepository<Tabela, Long> {
 
+	public Tabela findByNome(String nome);
+	
 }
