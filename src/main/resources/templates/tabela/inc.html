@@ -11,7 +11,7 @@
 
 	<div class="container">
 	  <div class="row">
-	  	<div class="col-4 offset-4">
+	  	<div class="col-6 offset-4">
 				
 				<div class="card login">
 	  				<div class="card-header">
@@ -23,23 +23,40 @@
 								<input type="text" class="form-control" placeholder="Nome" autofocus="autofocus" th:field="*{nome}" th:classappend="${#fields.hasErrors('nome')} ? is-invalid">
 								<span class="help-block text-danger" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"/>
 							</div>
+							
+							<button type="submit" name="adicionarColuna" class="btn btn-primary btn-block">Adicionar coluna</button>
+														
+							<table class="table">
+								<thead>
+									<tr>
+										<th>Nome</th>
+										<th>Tipo</th>
+										<th></th>
+									</tr>								
+								</thead>
+								<tbody>
+									<tr th:each="coluna,rowStat : *{colunas}">
+										<td>
+											<input class="form-control" placeholder="Nome" type="text" th:field="*{colunas[__${rowStat.index}__].nome}"/>
+										</td>
+										<td>
+											<select class="form-control" th:field="*{colunas[__${rowStat.index}__].tipoDado}">
+												<option th:each="var : ${tiposDado}"
+														th:value="${var.name()}"
+														th:text="${var.name()}"/>
+											</select>
+										</td>
+										<td>
+									    	<button class="btn btn-danger" type="submit" name="removerColuna" th:value="${rowStat.index}">X</button>
+									   	</td>
+									</tr>
+								</tbody>
+							</table>
+							
 							<button type="submit" class="btn btn-primary btn-block">Criar tabela</button>
 						</form>
 						
-						<table class="table">
-							<thead>
-								<tr>
-									<th>Nome</th>
-									<th>Tipo</th>
-								</tr>								
-							</thead>
-							<tbody>
-								<tr th:each="coluna : ${tabela.colunas}">
-									<td th:text="${coluna.nome}"></td>
-									<td th:text="${coluna.tipoDado}"></td>
-								</tr>
-							</tbody>
-						</table>
+						
 					</div>				
 				</div>
 				
