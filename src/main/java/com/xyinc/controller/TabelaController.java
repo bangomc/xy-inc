@@ -78,8 +78,10 @@ public class TabelaController {
 		}
 		
 		tabelaRepository.save(tabela);				
-		databaseService.criarTabela(tabela);		
-		return novaTabela();
+		databaseService.criarTabela(tabela);
+		mv = novaTabela();
+		mv.addObject("mensagem", "tabela incluida com sucesso");
+		return mv;
 	}
 		
 }

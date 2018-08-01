@@ -67,3 +67,4 @@ org.springframework.transaction.UnexpectedRollbackException: Transaction silentl
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.10.jar:9.0.10]
 	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_77]
 
+2018-08-01 14:56:43.665  WARN 13296 --- [main] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
