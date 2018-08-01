@@ -20,7 +20,7 @@ public class Coluna implements Serializable {
 	private static final long serialVersionUID = -5762756080226302659L;
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
 	@NotEmpty

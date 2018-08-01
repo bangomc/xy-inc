@@ -6,6 +6,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,14 @@ import com.xyinc.bean.Tabela;
 import com.xyinc.bean.enums.TipoDado;
 import com.xyinc.repository.TabelaRepository;
 import com.xyinc.service.DatabaseService;
+
+/**
+ * Controller para inclusao de tabelas e colunas.
+ * Persiste no banco e executa comandos para sua criacao.
+ * 
+ * @author Cristhiano Roberto
+ *
+ */
 
 @Controller
 @RequestMapping("/")
@@ -56,12 +65,18 @@ public class TabelaController {
 	
 	@PostMapping
 	public ModelAndView inc(@Valid Tabela tabela, BindingResult bindingResult) {
-		if(bindingResult.hasErrors()) {
-			ModelAndView mv = new ModelAndView("inc");
-			mv.addObject("tabela",tabela);
-			mv.addObject("tiposDado",TipoDado.values());
+		ModelAndView mv = new ModelAndView("inc");
+		mv.addObject("tabela",tabela);
+		mv.addObject("tiposDado",TipoDado.values());
+		if(bindingResult.hasErrors()) {			
 			return mv;
 		}
+		Tabela tabelaExiste = tabelaRepository.findByNome(tabela.getNome());
+		if(null!=tabelaExiste) {
+			bindingResult.addError(new FieldError("tabela", "nome", "tabela já existe"));
+			return mv;
+		}
+		
 		tabelaRepository.save(tabela);				
 		databaseService.criarTabela(tabela);		
 		return novaTabela();

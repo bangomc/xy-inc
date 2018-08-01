@@ -4,6 +4,13 @@ import org.springframework.stereotype.Component;
 
 import com.xyinc.bean.enums.TipoDado;
 
+/**
+ * Implementacao especifica para sintaxe do banco H2.
+ * 
+ * @author Cristhiano Roberto
+ *
+ */
+
 @Component
 public class TipoDadoConverterH2 implements TipoDadoConverter {
 

@@ -21,6 +21,14 @@ import com.xyinc.exception.NotFoundException;
 import com.xyinc.repository.TabelaRepository;
 import com.xyinc.service.DatabaseService;
 
+/**
+ * Controller para exposicao dos verbos da arquitetura REST.
+ * Disponibiliza GET,POST,PUT e DELETE para tabelas previamente cadastradas. 
+ * 
+ * @author Cristhiano Roberto
+ *
+ */
+
 @RestController
 @RequestMapping("/api")
 public class ApiController {

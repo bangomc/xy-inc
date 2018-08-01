@@ -13,6 +13,13 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+/**
+ * Representa Tabelas e Colunas em um banco de dados para operacoes de CRUD
+ * 
+ * @author Cristhiano Roberto
+ *
+ */
+
 @Entity
 public class Tabela implements Serializable {
 
@@ -22,7 +29,7 @@ public class Tabela implements Serializable {
 	private static final long serialVersionUID = 7446929258786431894L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
 	@NotEmpty

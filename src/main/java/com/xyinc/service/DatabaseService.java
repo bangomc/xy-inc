@@ -7,6 +7,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,8 +18,17 @@ import com.xyinc.bean.Tabela;
 import com.xyinc.bean.enums.TipoDado;
 import com.xyinc.database.TipoDadoConverter;
 
+/**
+ * Responsavel por criar e executar comandos SQL dinamicos no banco de dados. 
+ * 
+ * @author Cristhiano Roberto
+ *
+ */
+
 @Service
 public class DatabaseService {
+	
+	private Logger log = LoggerFactory.getLogger(getClass());
 	
 	@Autowired
 	private TipoDadoConverter tipoDadoConverter;
@@ -26,41 +37,66 @@ public class DatabaseService {
 	private EntityManager em;
 	
 	@Transactional
-	public void criarTabela(Tabela tabela) {
-		String sql = gerarStringCreateTable(tabela);
-		Query query = em.createNativeQuery(sql);
-		query.executeUpdate();
+	public void criarTabela(Tabela tabela) {		
+		try {
+			String sql = gerarStringCreateTable(tabela);
+			Query query = em.createNativeQuery(sql);
+			query.executeUpdate();
+		} catch (Exception e) {
+			log.error("Erro ao criar tabela "+tabela.getNome());
+		}
 	}
 	
 	public List<Object[]> findAll(Tabela tabela) {
-		String sql = gerarStringSelectAll(tabela);
-		Query query = em.createNativeQuery(sql);
-		List<Object[]> resultado = query.getResultList();
+		List<Object[]> resultado = null;
+		try {
+			String sql = gerarStringSelectAll(tabela);
+			Query query = em.createNativeQuery(sql);
+			resultado = query.getResultList();
+		} catch (Exception e) {
+			log.error("Erro ao executar findAll na tabela "+tabela.getNome());
+		}
 		return resultado;
 	}
 		
 	public Object[] findById(Tabela tabela, Long id) {
-		String sql = gerarStringSelectById(tabela,id);
-		Query query = em.createNativeQuery(sql);
-		List<Object[]> lista = query.getResultList();
-		if(null!=lista && !lista.isEmpty()) {
-			return lista.get(0);
+		try {
+			String sql = gerarStringSelectById(tabela,id);
+			Query query = em.createNativeQuery(sql);
+			List<Object[]> lista = query.getResultList();
+			if(null!=lista && !lista.isEmpty()) {
+				return lista.get(0);
+			}
+		} catch (Exception e) {
+			log.error("Erro ao executar findById na tabela "+tabela.getNome());
 		}
 		return null;
 	}
 	
 	@Transactional
 	public int upd(Tabela tabela,Map<String,Object> bean) {
-		String sql = gerarStringUpdate(tabela, bean);
-		Query query = em.createNativeQuery(sql);
-		return query.executeUpdate();
+		int retorno = 0;
+		try {
+			String sql = gerarStringUpdate(tabela, bean);
+			Query query = em.createNativeQuery(sql);
+			retorno = query.executeUpdate(); 
+		} catch (Exception e) {
+			log.error("Erro ao executar update na tabela "+tabela.getNome());
+		}
+		return retorno;
 	}
 	
 	@Transactional
 	public int del(Tabela tabela, Long id) {
-		String sql = gerarStringDelete(tabela, id);
-		Query query = em.createNativeQuery(sql);
-		return query.executeUpdate();
+		int retorno = 0;
+		try {
+			String sql = gerarStringDelete(tabela, id);
+			Query query = em.createNativeQuery(sql);
+			retorno = query.executeUpdate();			
+		} catch (Exception e) {
+			log.error("Erro ao executar delete na tabela "+tabela.getNome());
+		}
+		return retorno;
 	}
 	
 	public String gerarStringDelete(Tabela tabela, Long id) {
@@ -111,9 +147,15 @@ public class DatabaseService {
 	
 	@Transactional
 	public int inc(Tabela tabela,Map<String,Object> bean) {
-		String sql = gerarStringInsert(tabela, bean);
-		Query query = em.createNativeQuery(sql);
-		return query.executeUpdate();
+		int retorno = 0;
+		try {
+			String sql = gerarStringInsert(tabela, bean);
+			Query query = em.createNativeQuery(sql);
+			retorno = query.executeUpdate();			
+		} catch (Exception e) {
+			log.error("Erro ao executar insert na tabela "+tabela.getNome());
+		}
+		return retorno;
 	}
 	
 	public String gerarStringInsert(Tabela tabela, Map<String,Object> bean) {

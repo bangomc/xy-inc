@@ -60,7 +60,7 @@ public class DataBaseHelperTest {
 		DatabaseService dbh = new DatabaseService();
 		dbh.setTipoDadoConverter(new TipoDadoConverterH2());
 		
-		String sqlExpected = "INSERT INTO Produto(id,codigo,descricao,valor) VALUES(nextval('HIBERNATE_SEQUENCE'),123,'sapato',10.2)";
+		String sqlExpected = "INSERT INTO Produto(id,codigo,descricao,valor) VALUES(default,123,'sapato',10.2)";
 		
 		assertEquals(sqlExpected,dbh.gerarStringInsert(tabela,bean));
 		
