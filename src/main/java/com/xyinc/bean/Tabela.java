@@ -1,6 +1,7 @@
 package com.xyinc.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -9,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Tabela implements Serializable {
@@ -22,10 +25,12 @@ public class Tabela implements Serializable {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private Long id;
 	
+	@NotEmpty
 	private String nome;
 	
 	@OneToMany(cascade=CascadeType.ALL)
-	private List<Coluna> colunas;
+	@Size(min=1,message="adicione ao menos uma coluna")
+	private List<Coluna> colunas = new ArrayList<>();
 
 	public Long getId() {
 		return id;

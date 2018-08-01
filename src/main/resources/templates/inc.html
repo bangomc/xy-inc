@@ -13,19 +13,19 @@
 	  <div class="row">
 	  	<div class="col-6 offset-4">
 				
-				<div class="card login">
+				<div class="card margem">
 	  				<div class="card-header">
 				    	Tabela
 					</div>
 					<div class="card-body">
-						<form method="POST" th:object="${tabela}" th:action="@{/tabela}">
+						<form method="POST" th:object="${tabela}" th:action="@{/}">
 							<div class="form-group">						
 								<input type="text" class="form-control" placeholder="Nome" autofocus="autofocus" th:field="*{nome}" th:classappend="${#fields.hasErrors('nome')} ? is-invalid">
 								<span class="help-block text-danger" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"/>
 							</div>
 							
 							<button type="submit" name="adicionarColuna" class="btn btn-primary btn-block">Adicionar coluna</button>
-														
+							<span class="help-block text-danger" th:if="${#fields.hasErrors('colunas')}" th:errors="*{colunas}"/>	
 							<table class="table">
 								<thead>
 									<tr>

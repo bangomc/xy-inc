@@ -1,12 +1,11 @@
 package com.xyinc.controller;
 
-import java.util.List;
-import java.util.Optional;
-
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +18,7 @@ import com.xyinc.repository.TabelaRepository;
 import com.xyinc.service.DatabaseService;
 
 @Controller
-@RequestMapping("/tabela")
+@RequestMapping("/")
 public class TabelaController {
 	
 	@Autowired
@@ -29,27 +28,16 @@ public class TabelaController {
 	private DatabaseService databaseService;
 	
 	@GetMapping
-	public List<Tabela> findAll(){
-		return tabelaRepository.findAll();
-	}
-	
-	@GetMapping("/teste")
-	public ModelAndView teste() {
-		ModelAndView mv = new ModelAndView("tabela/inc");
-		Optional<Tabela> tabela = tabelaRepository.findById(1L);
-		
-		if(tabela.isPresent()) {
-			mv.addObject("tabela",tabela.get());
-			mv.addObject("tiposDado",TipoDado.values());
-		}
-		
+	public ModelAndView novaTabela() {
+		ModelAndView mv = new ModelAndView("inc");
+		mv.addObject("tabela", new Tabela());
+		mv.addObject("tiposDado",TipoDado.values());				
 		return mv;
 	}
-	
-	
+		
 	@PostMapping(params="adicionarColuna")
 	public ModelAndView addColuna(Tabela tabela) {
-		ModelAndView mv = new ModelAndView("tabela/inc");
+		ModelAndView mv = new ModelAndView("inc");
 		tabela.getColunas().add(new Coluna());
 		mv.addObject("tabela",tabela);
 		mv.addObject("tiposDado",TipoDado.values());
@@ -58,7 +46,7 @@ public class TabelaController {
 	
 	@PostMapping(params="removerColuna")
 	public ModelAndView delColuna(Tabela tabela, HttpServletRequest req) {
-		ModelAndView mv = new ModelAndView("tabela/inc");
+		ModelAndView mv = new ModelAndView("inc");
 		Integer index = Integer.valueOf(req.getParameter("removerColuna"));		
 		tabela.getColunas().remove(index.intValue());
 		mv.addObject("tabela",tabela);
@@ -67,29 +55,16 @@ public class TabelaController {
 	}
 	
 	@PostMapping
-	public Tabela inc(Tabela tabela) {
-		//Tabela retorno = tabelaRepository.save(tabela);
-		//databaseService.criarTabela(tabela);
-		return tabela;
+	public ModelAndView inc(@Valid Tabela tabela, BindingResult bindingResult) {
+		if(bindingResult.hasErrors()) {
+			ModelAndView mv = new ModelAndView("inc");
+			mv.addObject("tabela",tabela);
+			mv.addObject("tiposDado",TipoDado.values());
+			return mv;
+		}
+		tabelaRepository.save(tabela);				
+		databaseService.criarTabela(tabela);		
+		return novaTabela();
 	}
 		
-
-	public TabelaRepository getTabelaRepository() {
-		return tabelaRepository;
-	}
-
-	public void setTabelaRepository(TabelaRepository tabelaRepository) {
-		this.tabelaRepository = tabelaRepository;
-	}
-
-	public DatabaseService getDatabaseService() {
-		return databaseService;
-	}
-
-	public void setDatabaseService(DatabaseService databaseService) {
-		this.databaseService = databaseService;
-	}
-	
-	
-
 }

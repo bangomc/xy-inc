@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import com.xyinc.bean.enums.TipoDado;
 
@@ -21,8 +23,10 @@ public class Coluna implements Serializable {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private Long id;
 	
+	@NotEmpty
 	private String nome;
 	
+	@NotNull
 	private TipoDado tipoDado;
 	
 	public Coluna() {};
