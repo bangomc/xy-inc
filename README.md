@@ -50,12 +50,99 @@ Não é preciso se preocupar com o campo ID pois a API irá incluí-lo automatic
 </p>
 
 ## API RESTful
-Após a inclusão do modelo de Domínio, o desenvolvedor mobile terá acesso ao CRUD via padrão RESTful da seguinte forma:
+Após a inclusão do modelo de Domínio o desenvolvedor mobile terá acesso ao CRUD via padrão RESTful da seguinte forma:
 
-GET /xxx - Lista todos os elementos do Modelo xxx<br>
-GET /xxx/{id} - Busca um registro do modelo xxx por id<br>
-POST /xxx - Cria um novo registro do modelo xxx<br>
-PUT /xxx/{id} - Edita um registro do modelo xxx<br>
-DELETE /xxx/{id} - Deleta um registo do modelo xxx<br>
+GET api/xxx - Lista todos os elementos do modelo xxx<br>
+GET api/xxx/{id} - Busca um registro do modelo xxx por id<br>
+POST api/xxx - Cria um novo registro do modelo xxx<br>
+PUT api/xxx/{id} - Edita um registro do modelo xxx<br>
+DELETE api/xxx/{id} - Deleta um registo do modelo xxx<br>
 
 Onde xxx é o nome do modelo de Domínio criado no passo anterior.
+
+# Orientações para Teste <br>
+
+### Modelo de Domíno
+
+Cenário 1: Para realizar o teste do modelo de domínio, digitar na URI do browser o seguinte link: http://localhost:8080<br>
+
+Resultado Esperado: O sistema exibe a tela 'Tabelas' para inclusão do modelo e de seus atributos.<br>
+
+### Métodos
+
+Sugestão: Utilizar para testes dos métodos a ferramenta [Postman](https://www.getpostman.com/) configurado para requisições JSON.<br>
+
+Para os testes abaixo considerar os seguintes dados:
+
+Tabela: produto
+
+<table style="width:100%">
+  <tr>
+    <th>ATRIBUTO</th>
+    <th>TIPO</th> 
+    </tr>
+  <tr>
+    <td>codigo</td>
+    <td>INT</td> 
+  </tr>
+  <tr>
+    <td>nome</td>
+    <td>STRING</td> 
+    </tr>
+<tr>
+    <td>valor</td>
+    <td>DECIMAL</td> 
+    </tr>
+<tr>
+    <td>data</td>
+    <td>DATA</td> 
+    </tr>
+</table> <br>
+
+
+#### Método GET <br>
+
+Cenário 1: Informar na URI o seguinte endereço http://localhost:8080/api/produto<br>
+Resultado esperado: O sistema retorna todos os produtos cadastrados.<br>
+
+Cenário 2: Informar na URI o seguinte endereço http://localhost:8080/api/produto/1<br>
+Resultado esperado: O sistema retorna apenas o produto de ID igual a "1".<br>
+
+#### Método POST <br>
+
+Cenário 1: Informar na URI o seguinte endereço http://localhost:8080/api/produto<br>
+Preencher com os seguintes dados o request<br>
+
+<code>{
+    "codigo":20,
+    "nome":"produto1",
+    "valor":30.50,
+    "data":"2018-02-16"
+}</code>
+
+Resultado Esperado: O sistema cria na tabela produto o registro de ID igual a "1" e retorna o Status 200. <br>
+
+#### Método PUT <br>
+
+Cenário 1: Informar na URI o seguinte endereço http://localhost:8080/api/produto/1<br>
+Preencher com os seguintes dados o request<br>
+
+<code>{
+    "codigo":20,
+    "nome":"produto1",
+    "valor":45.00,
+    "data":"2018-02-16"
+}</code>
+
+Resultado Esperado: O sistema altera o valor do  produto de ID igual a "1" de R$30.50 para R$45 e retorna o Status 200. <br>
+
+#### Método DELETE<br>
+
+Cenário 1: Informar na URI o seguinte endereço http://localhost:8080/api/produto/1
+
+Resultado Esperado: O sistema deleta da tabela de produto o registro de ID igual a "1".
+
+
+
+
+
