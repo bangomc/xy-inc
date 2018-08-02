@@ -62,13 +62,13 @@ Onde xxx é o nome do modelo de Domínio criado no passo anterior.
 
 # Orientações para Teste <br>
 
-# Modelo de Domíno
+### Modelo de Domíno
 
 Cenário 1: Para realizar o teste do modelo de domínio, digitar na URI do browser o seguinte link: http://localhost:8080<br>
 
 Resultado Esperado: O sistema exibe a tela 'Tabelas' para inclusão do modelo e de seus atributos.<br>
 
-# Métodos
+### Métodos
 
 Sugestão: Utilizar para testes dos métodos a ferramenta [Postman](https://www.getpostman.com/) configurado para requisições JSON.<br>
 
@@ -100,45 +100,45 @@ Tabela: produto
 </table> <br>
 
 
-# Método GET <br>
+#### Método GET <br>
 
-Cenário 1: Informar na URI o seguinte endereço http://localhost:8080/produto<br>
+Cenário 1: Informar na URI o seguinte endereço http://localhost:8080/api/produto<br>
 Resultado esperado: O sistema retorna todos os produtos cadastrados.<br>
 
-Cenário 2: Informar na URI o seguinte endereço http://localhost:8080/produto/1<br>
+Cenário 2: Informar na URI o seguinte endereço http://localhost:8080/api/produto/1<br>
 Resultado esperado: O sistema retorna apenas o produto de ID igual a "1".<br>
 
-# Método POST <br>
+#### Método POST <br>
 
-Cenário 1: Informar na URI o seguinte endereço http://localhost:8080/produto<br>
+Cenário 1: Informar na URI o seguinte endereço http://localhost:8080/api/produto<br>
 Preencher com os seguintes dados o request<br>
 
 <code>{
     "codigo":20,
     "nome":"produto1",
     "valor":30.50,
-    "data":2018-2-16
+    "data":"2018-02-16"
 }</code>
 
 Resultado Esperado: O sistema cria na tabela produto o registro de ID igual a "1" e retorna o Status 200. <br>
 
-# Método PUT <br>
+#### Método PUT <br>
 
-Cenário 1: Informar na URI o seguinte endereço http://localhost:8080/produto/1<br>
+Cenário 1: Informar na URI o seguinte endereço http://localhost:8080/api/produto/1<br>
 Preencher com os seguintes dados o request<br>
 
 <code>{
     "codigo":20,
     "nome":"produto1",
     "valor":45.00,
-    "data":2018-2-16
+    "data":"2018-02-16"
 }</code>
 
 Resultado Esperado: O sistema altera o valor do  produto de ID igual a "1" de R$30.50 para R$45 e retorna o Status 200. <br>
 
-# Método DELETE<br>
+#### Método DELETE<br>
 
-Cenário 1: Informar na URI o seguinte endereço http://localhost:8080/produto/1
+Cenário 1: Informar na URI o seguinte endereço http://localhost:8080/api/produto/1
 
 Resultado Esperado: O sistema deleta da tabela de produto o registro de ID igual a "1".
 
