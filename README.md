@@ -59,3 +59,29 @@ PUT api/xxx/{id} - Edita um registro do modelo xxx<br>
 DELETE api/xxx/{id} - Deleta um registo do modelo xxx<br>
 
 Onde xxx é o nome do modelo de Domínio criado no passo anterior.
+
+#Orientações para Teste <br>
+
+# Modelto de Domíno
+
+Cenário 1: Para realizar o teste do modelo de domínio, digitar na URL o seguinte link: http://localhost:8080<br>
+
+Resultado Esperado: O sistema exibe a tela 'Tabelas' para inclusão do modelo e de seus atributos.<br>
+
+# Métodos
+
+Sugestão: Utilizar para testes dos métodos a ferramente Postman (https://www.getpostman.com/) configurado para requisições JSON.<br>
+
+Para os testes abaixo considera os seguintes dados:
+
+Tabela: produto
+
+
+#Método GET
+
+Cenário 1: Informar na URI o seguinte endereço http://localhost:8080/produto<br>
+Resultado esperado: O sistema retorna todos os produtos cadastrados.<br>
+
+Cenário 2: Informar na URI o seguinte endereço http://localhost:8080/produto/1<br>
+Resultado esperado: O sistema retorna apenas o produto de ID igual a "1".<br>
+
