@@ -50,12 +50,12 @@ Não é preciso se preocupar com o campo ID pois a API irá incluí-lo automatic
 </p>
 
 ## API RESTful
-Após a inclusão do modelo de Domínio, o desenvolvedor mobile terá acesso ao CRUD via padrão RESTful da seguinte forma:
+Após a inclusão do modelo de Domínio o desenvolvedor mobile terá acesso ao CRUD via padrão RESTful da seguinte forma:
 
-GET /xxx - Lista todos os elementos do Modelo xxx<br>
-GET /xxx/{id} - Busca um registro do modelo xxx por id<br>
-POST /xxx - Cria um novo registro do modelo xxx<br>
-PUT /xxx/{id} - Edita um registro do modelo xxx<br>
-DELETE /xxx/{id} - Deleta um registo do modelo xxx<br>
+GET api/xxx - Lista todos os elementos do modelo xxx<br>
+GET api/xxx/{id} - Busca um registro do modelo xxx por id<br>
+POST api/xxx - Cria um novo registro do modelo xxx<br>
+PUT api/xxx/{id} - Edita um registro do modelo xxx<br>
+DELETE api/xxx/{id} - Deleta um registo do modelo xxx<br>
 
 Onde xxx é o nome do modelo de Domínio criado no passo anterior.
