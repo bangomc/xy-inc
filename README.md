@@ -76,6 +76,29 @@ Para os testes abaixo considera os seguintes dados:
 
 Tabela: produto
 
+<table style="width:100%">
+  <tr>
+    <th>ATRIBUTO</th>
+    <th>TIPO</th> 
+    </tr>
+  <tr>
+    <td>codigo</td>
+    <td>INT</td> 
+  /tr>
+  <tr>
+    <td>nome</td>
+    <td>STRING</td> 
+    </tr>
+<tr>
+    <td>valor</td>
+    <td>DECIMAL</td> 
+    </tr>
+<tr>
+    <td>data</td>
+    <td>DATA</td> 
+    </tr>
+</table>
+
 
 #Método GET
 
