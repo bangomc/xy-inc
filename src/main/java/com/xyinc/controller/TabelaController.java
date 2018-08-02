@@ -77,11 +77,24 @@ public class TabelaController {
 			return mv;
 		}
 		
-		tabelaRepository.save(tabela);				
+		tabelaRepository.save(atributosNomeMinusculo(tabela));				
 		databaseService.criarTabela(tabela);
 		mv = novaTabela();
 		mv.addObject("mensagem", "tabela incluida com sucesso");
 		return mv;
+	}
+	
+	/**
+	 * Transforma o nome da tabela e seus atributos em minusculo
+	 * @param tabela
+	 * @return
+	 */
+	private Tabela atributosNomeMinusculo(Tabela tabela) {
+		tabela.setNome(tabela.getNome().toLowerCase());
+		tabela.getColunas().forEach(coluna->{
+			coluna.setNome(coluna.getNome().toLowerCase());
+		});
+		return tabela;
 	}
 		
 }

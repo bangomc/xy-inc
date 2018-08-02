@@ -120,7 +120,7 @@ public class DatabaseService {
 			sb.append(coluna.getNome());
 			sb.append("=");
 			Object valor = bean.get(coluna.getNome());
-			if(coluna.getTipoDado()==TipoDado.STRING) {
+			if(coluna.getTipoDado()==TipoDado.STRING || coluna.getTipoDado()==TipoDado.DATA) {
 				sb.append("'");	
 				sb.append(valor);
 				sb.append("'");

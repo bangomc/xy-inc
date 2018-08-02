@@ -30,10 +30,8 @@
 							<div class="form-group">						
 								<input type="text" class="form-control" placeholder="Nome" autofocus="autofocus" th:field="*{nome}" th:classappend="${#fields.hasErrors('nome')} ? is-invalid">
 								<span class="help-block text-danger" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"/>
-							</div>
-							
-							<button type="submit" name="adicionarColuna" class="btn btn-primary btn-block">Adicionar coluna</button>
-							<span class="help-block text-danger" th:if="${#fields.hasErrors('colunas')}" th:errors="*{colunas}"/>	
+							</div>							
+								
 							<table class="table">
 								<thead>
 									<tr>
@@ -60,7 +58,9 @@
 									</tr>
 								</tbody>
 							</table>
-							
+							<button type="submit" name="adicionarColuna" class="btn btn-primary btn-block">Adicionar coluna</button>
+							<span class="help-block text-danger" th:if="${#fields.hasErrors('colunas')}" th:errors="*{colunas}"/>
+							<br>
 							<button type="submit" class="btn btn-primary btn-block">Criar tabela</button>
 						</form>
 						
