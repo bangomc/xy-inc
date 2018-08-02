@@ -60,9 +60,9 @@ DELETE api/xxx/{id} - Deleta um registo do modelo xxx<br>
 
 Onde xxx é o nome do modelo de Domínio criado no passo anterior.
 
-#Orientações para Teste <br>
+# Orientações para Teste <br>
 
-# Modelto de Domíno
+# Modelo de Domíno
 
 Cenário 1: Para realizar o teste do modelo de domínio, digitar na URL o seguinte link: http://localhost:8080<br>
 
@@ -97,14 +97,52 @@ Tabela: produto
     <td>data</td>
     <td>DATA</td> 
     </tr>
-</table>
+</table> <br>
 
 
-#Método GET
+# Método GET <br>
 
 Cenário 1: Informar na URI o seguinte endereço http://localhost:8080/produto<br>
 Resultado esperado: O sistema retorna todos os produtos cadastrados.<br>
 
 Cenário 2: Informar na URI o seguinte endereço http://localhost:8080/produto/1<br>
 Resultado esperado: O sistema retorna apenas o produto de ID igual a "1".<br>
+
+# Método POST <br>
+
+Cenário 1: Informar na URI o seguinte endereço http://localhost:8080/produto
+Preencher com os seguintes dados o request
+{
+    "codigo":20,
+    "nome":"produto1",
+    "valor":30.50,
+    "data":2018-2-16
+}
+
+Resultado Esperado: O sistema cria na tabela produto o produto de ID igual a "1" com os atributos informados e retorna o 
+Status 200. <br>
+
+# Método PUT <br>
+
+Cenário 1: Informar na URI o seguinte endereço http://localhost:8080/produto/1
+Preencher com os seguintes dados o request
+{
+    "codigo":20,
+    "nome":"produto1",
+    "valor":45.00,
+    "data":2018-2-16
+}
+
+Resultado Esperado: O sistema altera o valor do  produto de ID igual a "1" de R$30.50 para R$45 e retorna o 
+Status 200. <br>
+
+# Método DELETE<br>
+
+Cenário 1: Informar na URI o seguinte endereço http://localhost:8080/produto/1
+
+Resultado Esperado: O sistema deleta da tabela de produto o produto de ID igual a "1".
+
+
+
+
 
