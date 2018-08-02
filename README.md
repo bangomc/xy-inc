@@ -113,12 +113,14 @@ Resultado esperado: O sistema retorna apenas o produto de ID igual a "1".<br>
 Cenário 1: Informar na URI o seguinte endereço http://localhost:8080/api/produto<br>
 Preencher com os seguintes dados o request<br>
 
-<code>{
+```json
+{
     "codigo":20,
     "nome":"produto1",
     "valor":30.50,
     "data":"2018-02-16"
-}</code>
+}
+```
 
 Resultado Esperado: O sistema cria na tabela produto o registro de ID igual a "1" e retorna o Status 200. <br>
 
